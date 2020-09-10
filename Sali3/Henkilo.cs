@@ -7,6 +7,7 @@ namespace Sali3
     class Henkilo
     {
         // Määritellään kaikkien henkilöiden yhteiset ominaisuudet(kentät)
+        // Jäsen luokka oerii nämä ominaisuudet
         protected string etunimi;
         protected string sukunimi;
         protected string katuosoite;
@@ -32,6 +33,44 @@ namespace Sali3
             this.katuosoite = katu;
             this.postinumero = pnro;
             this.postitoimipaikka = paikka;
+        }
+        // Metodeja testaukseen
+        public void naytaHenkilo()
+        {
+            Console.WriteLine("Etunimi on " + this.etunimi);
+            Console.WriteLine("Sukunimi on " + this.sukunimi);
+            Console.WriteLine("Katuosoite on " + this.katuosoite);
+            Console.WriteLine("Postinumero on " + this.postinumero);
+            Console.WriteLine("Postitoimipaikka on " + this.postitoimipaikka);
+        }
+    }
+    class Jasen : Henkilo
+    {
+        // Jäsenolioiden erityisominaisuudet, joita ei ole Henkilo-luokassa
+        protected string jasenid;
+        protected string sukupuoli;
+
+        // Muodstin kaikilla parametreillä
+
+        public Jasen(string etu, string suku, string katu, string pnro, string paikka, string id, string spuoli)
+        {
+            this.etunimi = etu;
+            this.sukunimi = suku;
+            this.katuosoite = katu;
+            this.postinumero = pnro;
+            this.postitoimipaikka = paikka;
+            this.jasenid = id;
+            this.sukupuoli = spuoli;
+        }
+        public void naytaJasen()
+        {
+            Console.WriteLine("Etunimi on " + this.etunimi);
+            Console.WriteLine("Sukunimi on " + this.sukunimi);
+            Console.WriteLine("Katuosoite on " + this.katuosoite);
+            Console.WriteLine("Postinumero on " + this.postinumero);
+            Console.WriteLine("Postitoimipaikka on " + this.postitoimipaikka);
+            Console.WriteLine("Jäsenid on " + this.jasenid);
+            Console.WriteLine("Sukupuoli on " + this.sukupuoli); 
         }
     }
 }
