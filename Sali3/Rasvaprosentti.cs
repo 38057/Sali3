@@ -30,6 +30,7 @@ namespace Sali3
             float bmi = painokg / (pituusm * pituusm);
             return bmi;
         }
+
         // Staattinen lasku metodi, jolla rasvaprosentin voi laskea ilman oliota
 
         static public float laskeRasva(float bmi, int ika, string sukupuoli)

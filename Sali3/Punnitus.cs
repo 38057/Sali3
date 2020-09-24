@@ -12,16 +12,23 @@ namespace Sali3
         protected string pituus;
         protected string paino;
 
+        // Muutetaan kentän arvot publiciksi
+        public string Paino
+        {
+            get { return paino; }
+        }
+
+        public string Pituus
+        {
+            get { return pituus; }
+        }
+
         // Muodostin kaikilla parametreilla
         public Painoindeksi(string paiva, string pituus, string paino)
         {
             this.paiva = paiva;
             this.pituus = pituus;
             this.paino = paino;
-            if (pituus == "0" || paino == "0")
-            {
-                Console.WriteLine("Paino tai pituus tiedoissa ei saa olla nollaa!");
-            }
             
         }
         

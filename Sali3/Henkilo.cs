@@ -51,6 +51,11 @@ namespace Sali3
         protected string sukupuoli;
         protected string syntymaaika;
 
+        public string Syntymaaika
+        {
+            get { return syntymaaika; }
+        }
+
         // Muodstin kaikilla parametreillä
 
         public Jasen(string etu, string suku, string katu, string pnro, string paikka, string id, string spuoli, string syntya)
@@ -64,6 +69,12 @@ namespace Sali3
             this.sukupuoli = spuoli;
             this.syntymaaika = syntya;
         }
+
+        public string Sukupuoli
+        {
+            get { return sukupuoli; }
+        }
+
         public void naytaJasen()
         {
             Console.WriteLine("Etunimi on " + this.etunimi);
