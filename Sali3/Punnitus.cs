@@ -18,18 +18,15 @@ namespace Sali3
             this.paiva = paiva;
             this.pituus = pituus;
             this.paino = paino;
+            if (pituus == "0" || paino == "0")
+            {
+                Console.WriteLine("Paino tai pituus tiedoissa ei saa olla nollaa!");
+            }
+            
         }
-        //Lasketaan painoindeksi
-        public float BMI()
-        {
-            // Muutetaan olion string metodit float muotoon
-            float paino = float.Parse(this.paino);
-            float pituus = float.Parse(this.pituus);
-            float bmi = paino / (pituus * pituus);
-            return bmi;
-        }
+        
         //Testausmetodi
-        public void naytaBMI()
+        public void naytaPunnitus()
         {
             Console.WriteLine("Punnituspäivä: " + this.paiva);
             Console.WriteLine("Paino: " + this.paino);

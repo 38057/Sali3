@@ -1,58 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Sali3
 {
     class Rasvaprosentti
     {
-        public string Sukupuoli { get; set; }
-        public string Ika { get; set; }
-
-        // Oletusmuodostin
-
-        public Rasvaprosentti()
+        // Staattinen metodi iän laskemiseksi
+        static public int Ika(string syntymapaiva)
         {
-            this.Sukupuoli = "Mies";
-            this.Ika = "0";
+            CultureInfo cultureInfo = new CultureInfo("fi-FI");
+            DateTime vuosinolla = new DateTime(1, 1, 1);
+            DateTime syntyaika = DateTime.Parse(syntymapaiva, cultureInfo);
+            DateTime tanaan = DateTime.Now;
+            TimeSpan ikaero = tanaan - syntyaika;
+            int ika = (vuosinolla + ikaero).Year - 1;
+            return ika;
         }
 
-        // Metodi kaikilla parametreillä
-
-        public Rasvaprosentti(string sukupuoli, string ika)
+        // Staattinen metodi painoindeksin laskemiseksi
+        static public float BMI(string pituus,string paino)
         {
-            this.Sukupuoli = sukupuoli;
-            this.Ika = ika;
+          
+            float painokg = float.Parse(paino);
+            float pituusm = float.Parse(pituus);
+            float bmi = painokg / (pituusm * pituusm);
+            return bmi;
         }
-
-        public float RasvaAikuinen(float pituus, float paino)
-        {
-            float BMI = paino / (pituus * pituus);
-            float sukupkerroin = 0;
-            if (this.Sukupuoli == "mies")
-            {
-                sukupkerroin = 1;
-            }
-        
-            float rasva = 1.2f * BMI + 0.23f * float.Parse(this.Ika) - 10.8f * sukupkerroin - 5.4f;
-            return rasva;
-           
-        }
-
         // Staattinen lasku metodi, jolla rasvaprosentin voi laskea ilman oliota
 
-        static public float laskeRasva(float paino, float pituus, float ika, string sukupuoli)
+        static public float laskeRasva(float bmi, int ika, string sukupuoli)
         {
-            float BMI = paino / (pituus * pituus);
             float sukukerroin = 0;
             sukupuoli = sukupuoli.ToLower();
             if (sukupuoli == "mies")
             {
                 sukukerroin = 1;
             }
-            float rasva = 1.2f * BMI + 0.23f * ika - 10.8f * sukukerroin - 5.4f;
+            if (ika < 16)
+            {
+                float rasva2 = 1.51f * bmi - 0.7f * ika - 3.6f * sukukerroin + 1.4f;
+                return rasva2;
+            }
+            float rasva = 1.2f * bmi + 0.23f * ika - 10.8f * sukukerroin - 5.4f;
             return rasva;
+            
+
         }
     }
 }
